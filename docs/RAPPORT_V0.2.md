@@ -80,6 +80,7 @@ Parcours E2E : premier lancement et démo ; tableau de bord et fiche produit ; a
 | Navigation masquée par le sélecteur d'audit | revue visuelle | barre de contexte séparée |
 | Animation du panneau produit malgré `prefers-reduced-motion` | revue visuelle | animation désactivée |
 | Accents illisibles dans les scripts sous PowerShell 5.1 | exécution de `check.ps1` | fichiers `.ps1` en UTF-8 avec BOM |
+| PDF : tableaux en gras, SKU coupés, page 2 presque vide, cellules justifiées | rendu des pages du rapport de démo | police normale, colonnes ajustées, saut de page supprimé, alignement à gauche |
 
 ## 4. Outils demandés : disponibilité réelle
 
@@ -90,7 +91,7 @@ Parcours E2E : premier lancement et démo ; tableau de bord et fiche produit ; a
 | Playwright MCP | **inutilisable** sur ce poste : configuré pour Google Chrome, non installé | remplacé par `@playwright/test` avec Microsoft Edge (suite reproductible, versionnée et rejouée en CI) |
 | Context7 | **non disponible** (authentification requise) | versions vérifiées sur le registre npm, API connues ; aucune documentation consultée via Context7 |
 | Security Guidance | aucun outil de ce nom accessible | revue de sécurité manuelle, règles Ruff `S` (bandit), pip-audit, npm audit, tests dédiés |
-| GitHub MCP | **non disponible** (authentification requise) ; pas de dépôt distant | dépôt Git **local** initialisé, 4 commits ; aucune publication |
+| GitHub MCP | **non disponible** (authentification requise) ; pas de dépôt distant | dépôt Git **local** initialisé, 6 commits ; aucune publication |
 
 ## 5. Limitations
 
