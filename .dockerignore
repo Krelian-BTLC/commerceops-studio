@@ -1,0 +1,11 @@
+.venv
+.git
+data
+*.db
+**/node_modules
+frontend/dist
+frontend/test-results
+frontend/playwright-report
+.pytest_cache
+.ruff_cache
+docs

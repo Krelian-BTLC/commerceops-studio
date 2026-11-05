@@ -1,11 +1,15 @@
 services:
-  api:
+  commerceops:
     build: .
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:8000:8000"   # exposé uniquement sur la machine locale
     environment:
       COMMERCEOPS_DB: /data/catalog.db
+      COMMERCEOPS_DEMO_ENABLED: "true"
     volumes:
       - commerceops_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
 volumes:
   commerceops_data:
