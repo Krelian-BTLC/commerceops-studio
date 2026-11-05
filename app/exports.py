@@ -122,10 +122,13 @@ def audit_pdf(audit: dict, breakdown: dict, issues: list[dict], max_issues: int 
 
     pdf.h2("Indicateurs clés")
     score = "-" if audit["quality_score"] is None else f"{audit['quality_score']:.1f} / 100"
+    active = audit["active_products"]
+    clean = f"{round((active - audit['affected_products']) / active * 100)} %" if active else "-"
     kpis = [
         ("Produits importés", audit["total_products"]), ("Produits actifs audités", audit["active_products"]),
         ("Brouillons (non audités)", audit["draft_products"]), ("Anomalies détectées", audit["issue_count"]),
-        ("Produits actifs concernés", audit["affected_products"]), ("Indice de qualité moyen", score),
+        ("Produits actifs concernés", audit["affected_products"]),
+        ("Fiches actives sans anomalie", clean), ("Indice de qualité moyen par fiche", score),
     ]
     heading = FontFace(emphasis="BOLD", color=(255, 255, 255), fill_color=ACCENT)
     pdf.set_font("Helvetica", "", 9.5)

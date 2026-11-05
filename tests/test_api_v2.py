@@ -57,7 +57,7 @@ def test_audit_detail_and_breakdown(client):
     assert detail["issues_by_category"] == {"identification": 1, "media": 1}
     assert detail["draft_products"] == 1
     assert detail["priority_products"][0]["product_id"] == "p1"
-    assert detail["quality_score"] == round((70 + 88) / 2, 1)
+    assert detail["quality_score"] == round((50 + 80) / 2, 1)
     assert client.get("/api/audits/999").status_code == 404
 
 
@@ -75,6 +75,8 @@ def test_products_search_filter_sort_paginate(client):
     last = client.get(url, params={"sort": "score", "page": 2}).json()["items"]
     assert last[-1]["product_id"] == "p05"  # brouillon sans score en dernier
     assert client.get(url, params={"has_issues": True}).json()["total"] == 2
+    # Le brouillon p05 n'est pas audité : il n'est ni « avec » ni « sans » anomalie.
+    assert client.get(url, params={"has_issues": False}).json()["total"] == 27
     assert client.get(url, params={"severity": "high"}).json()["items"][0]["product_id"] == "p04"
     assert client.get(url, params={"status": "draft"}).json()["total"] == 1
     assert client.get(url, params={"q": "p1"}).json()["total"] == 10
@@ -87,9 +89,9 @@ def test_products_search_filter_sort_paginate(client):
 def test_product_detail_with_score_breakdown(client):
     audit_id = upload(client, [product("a/b", sku="", title_en="")]).json()["audit"]["id"]
     detail = client.get(f"/api/audits/{audit_id}/products/a/b").json()
-    assert detail["score"] == 100 - 30 - 4
+    assert detail["score"] == 100 - 50 - 5
     assert [i["code"] for i in detail["issues"]] == ["missing_sku", "missing_title_en"]
-    assert sum(p["penalty"] for p in detail["score_breakdown"]) == 34
+    assert sum(p["penalty"] for p in detail["score_breakdown"]) == 55
     assert client.get(f"/api/audits/{audit_id}/products/nope").status_code == 404
 
 
@@ -177,7 +179,7 @@ def test_demo_can_be_disabled(client, monkeypatch):
 
 def test_rules_catalog_and_openapi(client):
     rules = client.get("/api/rules").json()
-    assert rules["penalties"] == {"high": 30, "medium": 12, "low": 4}
+    assert rules["penalties"] == {"high": 50, "medium": 20, "low": 5}
     assert any(r["confidence"] == "heuristic" for r in rules["rules"])
     spec = client.get("/openapi.json").json()
     assert spec["info"]["version"] == "0.2.0"

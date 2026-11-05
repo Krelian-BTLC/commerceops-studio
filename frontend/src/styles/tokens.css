@@ -1,0 +1,89 @@
+/*
+ * CommerceOps Studio — jetons de design.
+ * Porcelaine froide + encre ardoise ; un accent « pin » pour l'action,
+ * trois couleurs de priorité, et le jaune étiquette réservé à l'indice qualité.
+ */
+:root {
+  color-scheme: light;
+
+  /* Couleurs de base */
+  --porcelain: #eef1f4;
+  --paper: #ffffff;
+  --ink: #1b2330;
+  --ink-2: #4a5566;
+  --ink-3: #5b6575;
+  --rule: #d5dbe3;
+  --rule-strong: #b8c1cd;
+  --pine: #1f5c4a;
+  --pine-strong: #174536;
+  --pine-wash: #e3efe9;
+  --tag: #f2d95c;
+  --tag-edge: #d7bb35;
+
+  /* Priorités (contraste AA sur fond blanc) */
+  --high: #b42e26;
+  --high-wash: #f9e5e3;
+  --medium: #8f5a0c;
+  --medium-bar: #c9860f;
+  --medium-wash: #fbefd9;
+  --low: #46628c;
+  --low-wash: #e4ebf5;
+  --ok: #1f5c4a;
+
+  /* Typographie : une seule famille, échelle 1.25 */
+  --font: "Schibsted Grotesk Variable", "Segoe UI", system-ui, sans-serif;
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.4rem;
+  --step-3: 1.75rem;
+  --step-4: 2.25rem;
+  --step-5: 3rem;
+  --leading: 1.5;
+
+  /* Espacements (base 4 px) */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --s8: 4rem;
+
+  /* Formes : la hiérarchie dicte le rayon */
+  --radius-field: 6px;
+  --radius-panel: 10px;
+  --shadow-float: 0 18px 48px -12px rgb(27 35 48 / 0.28);
+  --focus: 0 0 0 3px rgb(31 92 74 / 0.35);
+
+  --content: 76rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --porcelain: #151b24;
+    --paper: #1d2531;
+    --ink: #e8edf3;
+    --ink-2: #b5c0cd;
+    --ink-3: #8d99a8;
+    --rule: #2f3a48;
+    --rule-strong: #445163;
+    --pine: #6cc3a5;
+    --pine-strong: #8fd6bd;
+    --pine-wash: #1f3a32;
+    --tag: #f2d95c;
+    --tag-edge: #c9ad2c;
+    --high: #f08a80;
+    --high-wash: #3d2224;
+    --medium: #e9b45c;
+    --medium-bar: #d99b2b;
+    --medium-wash: #3a2f1c;
+    --low: #93b1dc;
+    --low-wash: #222f42;
+    --ok: #6cc3a5;
+    --shadow-float: 0 18px 48px -12px rgb(0 0 0 / 0.6);
+    --focus: 0 0 0 3px rgb(108 195 165 / 0.45);
+  }
+}

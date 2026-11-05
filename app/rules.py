@@ -23,11 +23,12 @@ from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
 from urllib.parse import urlsplit
 
-RULES_VERSION = "2026.11-1"
+RULES_VERSION = "2026.11-2"
 SEVERITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 # Pénalités de l'indice de qualité (0-100). Volontairement simples et publiées
 # via GET /api/rules pour que chaque point retiré soit explicable.
-PENALTIES = {"high": 30, "medium": 12, "low": 4}
+# Une anomalie haute (vente ou stock compromis) fait tomber la fiche à 50, « fragile ».
+PENALTIES = {"high": 50, "medium": 20, "low": 5}
 CATEGORIES = {
     "identification": "Identification",
     "content": "Contenu",

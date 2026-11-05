@@ -228,7 +228,8 @@ def query_products(audit_id: int, *, q: str | None = None, status: str | None = 
         where.append("worst_severity = ?")
         params.append(SEVERITY_ORDER[severity])
     if has_issues is not None:
-        where.append("issue_count > 0" if has_issues else "issue_count = 0")
+        # « Sans anomalie » ne concerne que les produits audités : un brouillon n'a pas été contrôlé.
+        where.append("issue_count > 0" if has_issues else "issue_count = 0 AND status = 'active'")
     clause = " AND ".join(where)
     with connection() as db:
         total = db.execute(f"SELECT COUNT(*) FROM audit_products WHERE {clause}", params).fetchone()[0]
