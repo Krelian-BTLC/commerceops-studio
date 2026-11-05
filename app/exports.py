@@ -103,6 +103,11 @@ class _Report(FPDF):
         self.set_text_color(*INK)
         self.cell(0, 8, _t(text), new_x="LMARGIN", new_y="NEXT")
 
+    def body(self, size: float = 9):
+        """Texte courant des tableaux (les titres de section laissent la police en gras)."""
+        self.set_font("Helvetica", "", size)
+        self.set_text_color(*INK)
+
     def para(self, text: str, size: float = 9.5):
         self.set_font("Helvetica", "", size)
         self.set_text_color(*MUTED)
@@ -141,8 +146,9 @@ def audit_pdf(audit: dict, breakdown: dict, issues: list[dict], max_issues: int 
             row.cell(_t(value), align="RIGHT")
 
     pdf.h2("Anomalies par règle")
+    pdf.body()
     titles = {r.code: r for r in REGISTRY}
-    with pdf.table(col_widths=(80, 22, 28, 18), headings_style=heading, line_height=6) as table:
+    with pdf.table(col_widths=(80, 22, 28, 18), headings_style=heading, line_height=6, text_align="LEFT") as table:
         head = table.row()
         for h in ("Règle", "Priorité", "Nature", "Nombre"):
             head.cell(_t(h))
@@ -158,7 +164,8 @@ def audit_pdf(audit: dict, breakdown: dict, issues: list[dict], max_issues: int 
 
     if breakdown["priority_products"]:
         pdf.h2("Produits à corriger en priorité")
-        with pdf.table(col_widths=(28, 28, 76, 18, 18), headings_style=heading, line_height=6) as table:
+        pdf.body()
+        with pdf.table(col_widths=(24, 34, 84, 18, 18), headings_style=heading, line_height=6, text_align="LEFT") as table:
             head = table.row()
             for h in ("Produit", "SKU", "Titre", "Indice", "Anom."):
                 head.cell(_t(h))
@@ -170,17 +177,16 @@ def audit_pdf(audit: dict, breakdown: dict, issues: list[dict], max_issues: int 
                 row.cell(str(p["issue_count"]), align="RIGHT")
 
     if issues:
-        pdf.add_page()
         pdf.h2(f"Détail des anomalies ({min(len(issues), max_issues)} sur {len(issues)})")
-        pdf.set_font("Helvetica", "", 8)
-        with pdf.table(col_widths=(24, 22, 48, 16, 70), headings_style=heading, line_height=5) as table:
+        pdf.body(8)
+        with pdf.table(col_widths=(20, 30, 46, 16, 66), headings_style=heading, line_height=5, text_align="LEFT") as table:
             head = table.row()
             for h in ("Produit", "SKU", "Anomalie", "Prio.", "Constat"):
                 head.cell(_t(h))
             for i in issues[:max_issues]:
                 row = table.row()
                 row.cell(_t(i["product_id"]))
-                row.cell(_t(i["sku"][:24]))
+                row.cell(_t(i["sku"][:30]))
                 row.cell(_t(i["message"]))
                 row.cell(_t(SEVERITY_LABELS[i["severity"]]),
                          style=FontFace(color=SEVERITY_COLORS[i["severity"]], emphasis="BOLD"))
