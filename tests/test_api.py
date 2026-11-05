@@ -4,8 +4,8 @@ import io
 import pytest
 from fastapi.testclient import TestClient
 
+from app.core import FIELDS, CatalogValidationError, parse_csv
 from app.main import app
-from app.core import parse_csv, CatalogValidationError, FIELDS
 
 
 @pytest.fixture

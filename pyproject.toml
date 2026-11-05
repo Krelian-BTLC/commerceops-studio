@@ -1,0 +1,27 @@
+[project]
+name = "commerceops-studio"
+version = "0.2.0"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+extend-exclude = ["frontend"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM"]
+ignore = [
+    "S101",   # assert : invariants de déclaration des règles
+    "S608",   # SQL assemblé uniquement à partir de listes blanches, valeurs toujours liées (?)
+    "B008",   # File()/Query() en valeur par défaut : idiome FastAPI
+    "SIM108",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "E501"]
+"app/rules.py" = ["E501"]  # textes explicatifs des règles
+"demo/*" = ["S311"]  # données fictives déterministes, pas de cryptographie
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning:fastapi.testclient", "ignore:.*httpx2.*"]

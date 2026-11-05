@@ -1,5 +1,7 @@
-fastapi>=0.115,<1
-uvicorn[standard]>=0.30,<1
-python-multipart>=0.0.9,<1
-pytest>=8,<10
-httpx>=0.27,<1
+# Dépendances d'exécution, versions figées (vérifiées avec pip-audit le 2026-11-05).
+fastapi==0.162.0
+starlette==1.10.0
+pydantic==2.14.3
+uvicorn[standard]==0.54.0
+python-multipart==0.0.33
+fpdf2==2.9.0
