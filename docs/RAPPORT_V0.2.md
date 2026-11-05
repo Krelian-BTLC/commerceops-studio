@@ -106,6 +106,6 @@ Parcours E2E : premier lancement et démo ; tableau de bord et fiche produit ; a
 
 ## 6. Décisions qui vous reviennent
 
-1. **Licence** du dépôt public (MIT recommandée pour un portfolio ; non ajoutée sans votre accord).
+1. ~~Licence~~ : MIT, ajoutée avec votre accord le 5 novembre 2026.
 2. **Création du dépôt GitHub** et premier push (publication publique : votre validation est requise).
 3. Hébergement éventuel d'une démo en ligne : nécessiterait authentification ou mode démo isolé en lecture seule.

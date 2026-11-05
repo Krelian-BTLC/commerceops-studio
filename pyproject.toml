@@ -2,6 +2,7 @@
 name = "commerceops-studio"
 version = "0.2.0"
 requires-python = ">=3.12"
+license = "MIT"
 
 [tool.ruff]
 line-length = 140

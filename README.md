@@ -99,6 +99,12 @@ Détails, modèle de données et choix techniques : [docs/ARCHITECTURE.md](docs/
 - L'indice qualité mesure la complétude et la cohérence internes du fichier : ce n'est **pas** une note SEO.
 - Le PDF utilise les polices standard (Latin-1) : les caractères hors Latin-1 sont translittérés.
 
+## Licence
+
+Code publié sous licence [MIT](LICENSE).
+
+Principales dépendances : FastAPI, Pydantic, Uvicorn et React (MIT ou BSD), python-multipart (Apache-2.0), [fpdf2](https://github.com/py-pdf/fpdf2) (LGPL-3.0, utilisée comme bibliothèque non modifiée et installée par pip, pas redistribuée dans ce dépôt), police Schibsted Grotesk (SIL Open Font License 1.1).
+
 ## Documentation
 
 - [Guide d'installation Windows](docs/INSTALLATION_WINDOWS.md)
