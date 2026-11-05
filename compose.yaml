@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      COMMERCEOPS_DB: /data/catalog.db
+    volumes:
+      - commerceops_data:/data
+volumes:
+  commerceops_data:
